@@ -1,9 +1,9 @@
-import {createAlertCtrl, getAllAlertsCtrl, getAlertByIdCtrl, updateAlertByIdCtrl, deleteAlertByIdCtrl} from "../controllers/alert.controller.js";
+import { createAlertCtrl, getAllAlertsCtrl, getAlertByIdCtrl, updateAlertByIdCtrl, deleteAlertByIdCtrl } from "../controllers/alert.controller.js";
 
 
 
 // POST Service:
-export async function createAlertService(req, res){
+export async function createAlertService(req, res) {
     const alert = req.body;
 
     const response = await createAlertCtrl(alert);
@@ -13,8 +13,10 @@ export async function createAlertService(req, res){
     });
 };
 
+
+
 // GET (all alerts) Service:
-export async function getAllAlertsService(_, res){
+export async function getAllAlertsService(_, res) {
     const response = await getAllAlertsCtrl();
     res.status(200).json(response);
 };
@@ -22,8 +24,8 @@ export async function getAllAlertsService(_, res){
 
 
 // GET (one by ID) Service:
-export async function getAlertByIdService(req, res){
-    const {id} = req.params;
+export async function getAlertByIdService(req, res) {
+    const { id } = req.params;
 
     const response = await getAlertByIdCtrl(id);
 
@@ -33,24 +35,42 @@ export async function getAlertByIdService(req, res){
 
 
 // PUT Service:
-export async function updateAlertByIdService(req, res){
-    const {id} = req.params;
+export async function updateAlertByIdService(req, res) {
+
+    const { id } = req.params;
     const updateAlert = req.body;
 
-    const response = await updateAlertByIdCtrl(id, updateAlert);
+    const isAlertExits = await getAlertByIdCtrl(id);
+    
+    if (isAlertExits.length === 0) {
+        res.status(404).json({
+            error: "Not found (this alert does not exsit in our system)"
+        });
+    } else {
 
-    res.status(200).json(response);
+        const response = await updateAlertByIdCtrl(id, updateAlert);
+
+        res.status(200).json(response)
+    }
 };
 
 
 
 // DELETE Service:
-export async function deleteAlertByIDService(req, res){
-    const {id} = req.params;
+export async function deleteAlertByIDService(req, res) {
+    const { id } = req.params;
+
+    const isAlertExits = await getAlertByIdCtrl(id);
+
+    if (isAlertExits.length === 0) {
+        res.status(404).json({
+            error: "Not found (this alert does not exsit in our system)"
+        });
+    };
 
     const response = await deleteAlertByIdCtrl(id);
 
     res.status(202).json({
-        message:  `The alert has been successfull deleted from the system`
+        message: `The alert has been successfull deleted from the system`
     });
 };

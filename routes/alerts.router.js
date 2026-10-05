@@ -1,4 +1,6 @@
 import express from "express";
+import { alertChecking } from "../middelware/alert.middleware.js";
+import {createAlertCtrl} from "../controllers/alert.controller.js";
 
 
 const router = express.Router();
@@ -18,11 +20,7 @@ router.get("/alerts/:id", (req, res) => {
 });
 
 
-router.post("/alerts", (req, res) => {
-    res.status(200).json({
-        message: "works!"
-    })
-});
+router.post("/alerts", alertChecking, createAlertCtrl);
 
 
 router.delete("/alerts/:id", (req, res) => {

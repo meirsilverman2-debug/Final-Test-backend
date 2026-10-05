@@ -1,6 +1,6 @@
 import {MongoClient} from "mongodb";
 
-const MONGO_URL = "mongodb://localhost:27017";
+const MONGO_URL = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const client = new MongoClient(MONGO_URL);
 
 try {
@@ -11,7 +11,7 @@ try {
 };
 
 const db = client.db("alertsDb");
-const alertsCollection = db.admin.collection("alerts")
+const alertsCollection = db.collection("alerts");
 
 
 export default alertsCollection;

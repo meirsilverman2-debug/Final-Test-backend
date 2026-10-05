@@ -40,6 +40,8 @@ export async function updateAlertById(alertId, alertUpdate){
 
 // The function gets an ID by which with this the alert with this ID will be deleted from the database:
 export async function deleteAlertByID(alertId){
+    console.log(alertId);
+    
     const result = await alertsCollection.deleteOne({_id: new ObjectId(alertId)})
     return result;
 };

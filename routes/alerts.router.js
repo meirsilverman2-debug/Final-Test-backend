@@ -1,23 +1,26 @@
 import express from "express";
 import { alertChecking } from "../middelware/alert.middleware.js";
-import { createAlertCtrl, getAllAlertsCtrl, getAlertByIdCtrl, updateAlertByIdCtrl, deleteAlertByIdCtrl } from "../controllers/alert.controller.js";
+import {createAlertService, getAllAlertsService, getAlertByIdService, updateAlertByIdService, deleteAlertByIDService} from "../service/alert.service.js";
 
 
 const router = express.Router();
 
 
-router.get("/alerts", getAllAlertsCtrl);
+// All of the five endpoints in our alert system:
+
+router.post("/alerts", alertChecking, createAlertService);
 
 
-router.get("/alerts/:id", getAlertByIdCtrl);
+router.get("/alerts", getAllAlertsService);
 
 
-router.post("/alerts", alertChecking, createAlertCtrl);
+router.get("/alerts/:id", getAlertByIdService);
 
 
-router.delete("/alerts/:id", deleteAlertByIdCtrl);
+router.delete("/alerts/:id", deleteAlertByIDService);
 
 
-router.put("/alerts/:id", alertChecking, updateAlertByIdCtrl);
+router.put("/alerts/:id", alertChecking, updateAlertByIdService);
+
 
 export default router;

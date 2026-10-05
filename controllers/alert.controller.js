@@ -1,47 +1,42 @@
+import { Long } from "mongodb";
 import { createAlert, getAllAlerts, getAlertById, updateAlertById, deleteAlertByID } from "../DAL/alerts.dal.js";
 
 
 
 // POST Ctrl:
-export async function createAlertCtrl(req, res) {
-    const response = await createAlert(req.body);
-    res.status(201).json({
-        message: `an alert has been created with _id: ${response.insertedId}`
-    });
+export async function createAlertCtrl(alert) {
+    const response = await createAlert(alert);
+    return response;
 };
 
 
 
 // GET (all alerts) Ctrl:
-export async function getAllAlertsCtrl(_, res) {
+export async function getAllAlertsCtrl() {
     const response = await getAllAlerts();
-    res.status(200).json(response);
+    return response;
 };
 
 
 
 // GET (by ID) Ctrl:
-export async function getAlertByIdCtrl(req, res){
-    const response = await getAlertById(req.params);
-    res.status(200).json(response);
+export async function getAlertByIdCtrl(alertId){
+    const response = await getAlertById(alertId);
+    return response;
 };
 
 
 
 // PUT (by ID) Ctrl:
-export async function updateAlertByIdCtrl(req, res){
-    console.log("works");
-    
-    const response = await updateAlertById(req.params, req.body);
-    res.status(200).json(response);
+export async function updateAlertByIdCtrl(alertID, updateAlert){
+    const response = await updateAlertById(alertID, updateAlert);
+    return response;
 };
 
 
 
 // DELETE (by ID) Ctrl:
-export async function deleteAlertByIdCtrl(req, res){
-    const response = await deleteAlertByID(req.params);
-    res.status(202).json({
-        message:  `The alert has been successfull deleted from the system`
-});
+export async function deleteAlertByIdCtrl(alertId){
+    const response = await deleteAlertByID(alertId);
+    return response;
 };

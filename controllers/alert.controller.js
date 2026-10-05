@@ -6,8 +6,6 @@ import { createAlert, getAllAlerts, getAlertById, updateAlertById, deleteAlertBy
 // POST Ctrl:
 export async function createAlertCtrl(alert) {
     const response = await createAlert(alert);
-    console.log(response);
-    
     return response;
 };
 

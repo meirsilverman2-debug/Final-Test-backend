@@ -20,8 +20,10 @@ npm start
 * DELETE /api/alerts/:id
 
 * PUT /api/alerts/:id
-
-
+---
+## DB:
+---
+#### I chose mongodb because as a collection type database it is more convinyent if the req body has a field that its value is an arry or object insted of many tabels to in othet db and also it is much more flexable so not evry alert has to be with all of the same fileds.
 
 
 

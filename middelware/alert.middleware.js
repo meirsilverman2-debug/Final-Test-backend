@@ -5,6 +5,8 @@ export function alertChecking(req, res, next){
     
 
     const data = alertSchema.safeParse(req.body);
+    console.log(data);
+    
 
     if (!data.success){
         res.status(400).json({

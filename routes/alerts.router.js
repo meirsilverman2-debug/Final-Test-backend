@@ -1,16 +1,12 @@
 import express from "express";
 import { alertChecking } from "../middelware/alert.middleware.js";
-import {createAlertCtrl} from "../controllers/alert.controller.js";
+import {createAlertCtrl, getAllAlertsCtrl } from "../controllers/alert.controller.js";
 
 
 const router = express.Router();
 
 
-router.get("/alerts", (req, res) => {
-    res.status(200).json({
-        message: "works!"
-    })
-});
+router.get("/alerts", getAllAlertsCtrl);
 
 
 router.get("/alerts/:id", (req, res) => {

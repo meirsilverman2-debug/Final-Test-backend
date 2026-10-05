@@ -2,7 +2,7 @@
 ---
 ## Alert sytstem:
 
-#### That gets and handels alerts in real time to protect Israel 
+#### That gets and handels alerts in real time to protect Israel with the power of CRUD we are managing each and evry alert (create, read, update, delete)
 ---
 ## How to run the server:
 ```

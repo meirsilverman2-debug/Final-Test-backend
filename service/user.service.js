@@ -1,12 +1,31 @@
-import {createUserCtrl, getAllUsersCtrl, getUserByIdCtrl, updateUserByIdCtrl, deleteUserByIdCtrl} from "../controllers/user.controllers.js";
-
+import { createUserCtrl, getAllUsersCtrl, getUserByIdCtrl, updateUserByIdCtrl, deleteUserByIdCtrl } from "../controllers/user.controllers.js";
+import { hashPassword, comparePassword } from "../utils/bcryptFunctions.js";
+import { generateToken } from "../utils/jwtFunctions.js"
 
 
 // POST Service:
 export async function createUsertService(req, res) {
-    const Usert = req.body;
+    console.log("Create user");
+    
+    const user = req.body;
 
-    const response = await createUserCtrl(Usert);
+    console.log(user);
+    
+
+    console.log(user.password);
+    // Here we are changing more likly exchanging the password with the hashed virsion:
+    const hashedPassword = await hashPassword(user.password);
+    user.password = hashedPassword;
+
+    console.log(user.password);
+    
+
+    // this is not right it is need to be in the front my bad...........
+    // And here we have the amazingly sight of generating a token and keeping it in the local storage fo the browzaer how amazing is this!!!:
+    // const token = generateToken(user);
+    // localStorage.setItem(token);
+
+    const response = await createUserCtrl(user);
 
     res.json({
         message: `A User has been created with _id: ${response.insertedId}`
@@ -25,7 +44,7 @@ export async function getAllUsertsService(_, res) {
 
 // GET (one by ID) Service:
 export async function getUsertByIdService(req, res) {
-    const { id } = req.params;
+    const { id } = req.user.id;
 
     const response = await getUsertByIdCtrl(id);
 
@@ -37,11 +56,21 @@ export async function getUsertByIdService(req, res) {
 // PUT Service:
 export async function updateUsertByIdService(req, res) {
 
+    const {role} = req.user;
+    console.log(role);
+
+    if(role !== "admin"){
+        res.status(403).json({
+            message: "You do not have the authorizatio to do it we are wery sorry not realy hhaaaa!"
+        });
+    };
+    
+
     const { id } = req.params;
     const updateUsert = req.body;
 
     const isUsertExits = await getUsertByIdCtrl(id);
-    
+
     if (isUsertExits.length === 0) {
         res.status(404).json({
             error: "Not found (This User does not exsit in our system)"
@@ -58,6 +87,16 @@ export async function updateUsertByIdService(req, res) {
 
 // DELETE Service:
 export async function deleteUsertByIDService(req, res) {
+
+     const {role} = req.user;
+    console.log(role);
+
+    if(role !== "admin"){
+        res.status(403).json({
+            message: "You do not have the authorizatio to do it we are wery sorry not realy hhaaaa!"
+        });
+    };
+
     const { id } = req.params;
 
     const isAlertExits = await getUserByIdCtrl(id);

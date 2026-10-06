@@ -18,7 +18,7 @@ export function userChecking(req, res, next) {
     };
 
 
-    next();
+    next()
 };
 
 

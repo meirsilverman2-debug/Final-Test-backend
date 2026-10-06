@@ -21,6 +21,11 @@ export function generateToken(user){
 
 // The function gets a token and decodes it by using the JWT_SECRET of ours
 export  function validateToken(token){
+    
+    console.log(token);
+    console.log(process.env.JWT_SECRET);
+    
+    
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         
@@ -30,6 +35,8 @@ export  function validateToken(token){
 
         return decodedToken;
     } catch (error) {
+        console.log(error);
         console.log("Invalid or expired token");
+       
     };
 };

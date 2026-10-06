@@ -21,7 +21,7 @@ router.post("/register", userChecking, createUsertService);
 
 
 
-router.delete("/api/auth/users/:id",doYouHaveToken, deleteUsertByIDService);
+router.delete("/users/:id", doYouHaveToken, deleteUsertByIDService);
 
 
 export default router;

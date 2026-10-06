@@ -22,13 +22,13 @@ export async function createUsertService(req, res) {
 
     // this is not right it is need to be in the front my bad...........
     // And here we have the amazingly sight of generating a token and keeping it in the local storage fo the browzaer how amazing is this!!!:
-    // const token = generateToken(user);
+    const token = generateToken(user);
     // localStorage.setItem(token);
 
     const response = await createUserCtrl(user);
 
     res.json({
-        message: `A User has been created with _id: ${response.insertedId}`
+        message: `A User has been created with _id: ${response.insertedId} ${token}`
     });
 };
 
@@ -87,8 +87,9 @@ export async function updateUsertByIdService(req, res) {
 
 // DELETE Service:
 export async function deleteUsertByIDService(req, res) {
-
-     const {role} = req.user;
+    console.log(req.user);
+    
+    const {role} = req.user.role;
     console.log(role);
 
     if(role !== "admin"){

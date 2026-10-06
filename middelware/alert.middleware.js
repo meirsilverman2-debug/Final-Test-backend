@@ -1,14 +1,14 @@
 import alertSchema from "../validation/alerts.vaildation.js";
 
-export function alertChecking(req, res, next){
+export function alertChecking(req, res, next) {
     console.log("alertChecking");
-    
+
 
     const data = alertSchema.safeParse(req.body);
     console.log(data);
-    
 
-    if (!data.success){
+
+    if (!data.success) {
         res.status(400).json({
             error: "Bad request: ( invalid body )"
         });

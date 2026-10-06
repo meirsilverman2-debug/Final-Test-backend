@@ -11,7 +11,8 @@ try {
 };
 
 const db = client.db("alertsDb");
-const alertsCollection = db.collection("alerts");
+const userDb = client.db("userDb")
 
+export const alertsCollection = db.collection("alerts");
+export const userCollection = userDb.collection("users");
 
-export default alertsCollection;

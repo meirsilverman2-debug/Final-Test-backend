@@ -1,4 +1,4 @@
-import { Long } from "mongodb";
+
 import { createAlert, getAllAlerts, getAlertById, updateAlertById, deleteAlertByID } from "../DAL/alerts.dal.js";
 
 

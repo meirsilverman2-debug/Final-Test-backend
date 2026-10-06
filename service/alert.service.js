@@ -9,7 +9,7 @@ export async function createAlertService(req, res) {
     const response = await createAlertCtrl(alert);
 
     res.json({
-        message: `an alert has been created with _id: ${response.insertedId}`
+        message: `An alert has been created with _id: ${response.insertedId}`
     });
 };
 

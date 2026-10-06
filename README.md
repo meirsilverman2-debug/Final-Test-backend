@@ -1,15 +1,15 @@
-# Final Test:
+# Final Test 📜:
 ---
-## Alert sytstem:
+## Alert sytstem 🚨:
 
 #### That gets and handels alerts in real time to protect Israel with the power of CRUD we are managing each and evry alert (create, read, update, delete)
 ---
-## How to run the server:
+## How to run the server 🏃‍♀️‍➡️:
 ```
 npm start
 ```
 ---
-## Five alert endpoints of our system:
+## Five alert endpoints of our system ✋:
 
 * GET /api/alerts
 
@@ -21,7 +21,7 @@ npm start
 
 * PUT /api/alerts/:id
 ---
-## Five auth endpoints of our system:
+## Five auth endpoints of our system ✋:
 
 * GET /api/auth/users
 
@@ -1013,7 +1013,11 @@ C:.
 ---
 Golan ("golani golani shely")
 ---
-
+## How to run the front?:
+```
+npm run dev
+```
+# Thank you for evrything!!!
 
 
 
